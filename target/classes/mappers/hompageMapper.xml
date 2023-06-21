@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.hompage.dao.HomPageDao">
+	 <select id="maxNum" resultType="int">
+		select nvl(max(num), 0) from
+		hompage
+	</select>
+	<insert id="insertData" parameterType="hom">
+		insert into hompage
+		values(#{num}, #{name}, #{pwd}, #{email}, #{subject}, #{content},
+		#{ipAddr}, 0, sysdate)
+	</insert>
+
+	<select id="getDataCount" parameterType="map" resultType="int">
+		select
+		nvl(count(*), 0) from hompage where ${searchKey} like '%' ||
+		#{searchValue} || '%'
+	</select>
+
+	<select id="getLists" parameterType="map" resultType="hom">
+		select *
+		from (select rownum rnum, data.* from(select num, name,
+		subject,
+		hitCount, to_char(created, 'YYYY-MM-DD') created from hompage
+		where
+		${searchKey}
+		like '%' || #{searchValue} || '%' order by num desc)
+		data)
+		<![CDATA[
+		where rnum >= #{start} and rnum <= #{end}		
+		]]>
+	</select> 
+	<update id="updateHitCount" parameterType="int">
+		update hompage set
+		hitCount = hitCount + 1 where num=1
+	</update>
+	<select id="getReadData" parameterType="int" resultType="Board">
+		select * from hompage where num=#{num}
+	</select>
+
+	<update id="updateData" parameterType="Board">
+		update hompage set
+		name=#{name},pwd=#{pwd},email=#{email},subject=#{subject},content=#{content}
+		where num=#{num}
+	</update>
+
+
+	<delete id="deleteData" parameterType="int">
+		delete hompage where num=#{num}
+	</delete>
+
+</mapper>

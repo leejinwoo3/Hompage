@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layouts/layout1}">
+
+<th:block layout:fragment="css">
+	<link rel="stylesheet" type="text/css" href="css/created.css" />
+</th:block>
+
+
+
+<div layout:fragment="content" id="bbs">
+	<form action="/created" method="post" name="myForm">
+		<main class="form-signin w-100 m-auto">
+
+			<img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt=""
+				width="72" height="57">
+			<h1 class="h3 mb-3 fw-normal">수정</h1>
+
+			<div class="form-floating">
+				<input type="num" class="form-control" id="floatingInput"
+					placeholder="num"> <label for="floatingInput">num</label>
+			</div>
+
+			<div class="form-floating">
+				<input type="name" class="form-control" id="floatingPassword"
+					placeholder="name"> <label for="floatingPassword">name</label>
+			</div>
+			<div class="form-floating">
+				<input type="pwd" class="form-control" id="floatingPassword"
+					placeholder="pwd"> <label for="floatingPassword">pwd</label>
+			</div>
+			
+			<div class="form-floating">
+				<input type="email" class="form-control" id="floatingPassword"
+					placeholder="email"> <label for="floatingPassword">email</label>
+			</div>
+			<div class="form-floating">
+				<input type="content" class="form-control" id="floatingPassword"
+					placeholder="content"> <label for="floatingPassword">content</label>
+			</div>
+			<div class="form-floating">
+				<input type="subject" class="form-control" id="floatingPassword"
+					placeholder="subject"> <label for="floatingPassword">subject</label>
+			</div>
+			<button class="w-100 btn btn-lg btn-primary" type="submit">Sign
+				in</button>
+			<p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+
+		</main>
+	</form>
+</div>
+<th:block layout:fragment="script">
+	<script th:inline="javascript">
+		/* 	var errorMessage =[[${errorMessage}]];
+		 if(errorMessage != null){
+		 alert(errorMessage);	
+		 } */
+		function sendIt() {
+			var f = document.myForm;//폼태그
+			var str = f.subject.value;//제목에 입력된 값을 가져온다.
+			str = str.trim();//공백을 없애주는 함수
+			if (!str) {
+				alert("제목을 입력하세요");
+				f.subject.focus();
+				return;
+			}
+			str = f.name.value;
+			str = str.trim();
+			if (!str) {
+				alert("이름을 입력하세요");
+				f.name.focus();
+				return;
+			}
+
+			str = f.email.value;
+			str = str.trim();
+
+			if (str) {
+				if (!isValidEmail(str)) {
+					alert("정상적인 이메일을 입력하세요!");
+					f.email.focus();
+					return;
+				}
+			}
+			str = f.content.value;
+			str = str.trim();
+
+			if (!str) {
+
+				alert("내용을 입력하세요!");
+				f.content.focus();
+				return;
+
+			}
+			str = f.pwd.value;
+			str = str.trim();
+
+			if (!str) {
+
+				alert("패스워드를 입력하세요");
+				f.pwd.focus();
+				return;
+
+			}
+			f.submit();
+
+		}
+	</script>
+</th:block>
+
+</html>
