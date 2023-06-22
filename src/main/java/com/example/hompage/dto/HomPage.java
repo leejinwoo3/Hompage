@@ -5,7 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-
 public class HomPage {
 		private int num;
 		private String name;
@@ -16,5 +15,6 @@ public class HomPage {
 		private String ipAddr;//게시물 등록자의 ip주소
 		private String created;//게시물 생성날짜
 		private int hitCount;//조회수
+		private String img;
 	}
 

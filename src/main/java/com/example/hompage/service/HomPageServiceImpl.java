@@ -42,4 +42,16 @@ public class HomPageServiceImpl implements HomPageService {
 	public HomPage getReadData(int num) throws Exception {
 		return hompageMapper.getReadData(num);
 	}
+	@Override
+	public void updateData(HomPage hompage) throws Exception {
+		hompageMapper.updateData(hompage);
+
+	}
+
+	@Override
+	public void deleteData(int num) throws Exception {
+		hompageMapper.deleteData(num);
+		
+	}
+
 }

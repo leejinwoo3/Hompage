@@ -21,4 +21,8 @@ public interface HomPageDao {
 
 	public HomPage getReadData(int num) throws Exception;
 
+	public void updateData(HomPage hompage) throws Exception;
+
+	public void deleteData(int num) throws Exception;
+
 }

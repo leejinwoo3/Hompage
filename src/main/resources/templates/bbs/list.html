@@ -14,14 +14,12 @@
 		<section class="py-5 text-center container">
 			<div class="row py-lg-5">
 				<div class="col-lg-6 col-md-8 mx-auto">
-					<h1 class="fw-light">Album example</h1>
-					<p class="lead text-muted">Something short and leading about
-						the collection below—its contents, the creator, etc. Make it short
-						and sweet, but not too short so folks don’t simply skip over it
-						entirely.</p>
+					<h1 class="fw-light">새로운 정보 추가</h1>
+					<p class="lead text-muted">짧지만 선도적인 아래 컬렉션.훌륭하게 만드세요!</p>
 					<p>
-						<a href="#" class="btn btn-primary my-2">Main call to action</a> <a
-							href="#" class="btn btn-secondary my-2">Secondary action</a>
+						<button type="button" class="btn btn-primary my-2"
+							onclick="javascript:location.href='/created';">추가</button>
+
 					</p>
 				</div>
 			</div>
@@ -30,101 +28,24 @@
 		<div class="album py-5 bg-light">
 			<div class="container">
 				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-					<div class="col">
+
+
+					<div class="col" th:if="${#lists.size(lists)} > 0"
+						th:each="homPage:${lists}">
 						<div class="card shadow-sm">
-							<!-- <svg  class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img th:src=@{/img/bmw.jpg}"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-								<img th:src="@{/img/bmw.jpg}"/>
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" b>
-								
-                 	<img alt= "bmw" src="img/bmw.jpg" width="169"/>
-                  </rect>
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                  </text> 
-                </svg>-->
 							<img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/bmw.jpg}" />
+								th:src="@{img/} + ${homPage.img}" />
+							<div class="card-body">
+								<p class="card-text" th:text="${homPage.content}"></p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<button type="button" class="btn btn-sm btn-outline-secondary"
+											th:onclick="|location.href='article?num=@{${homPage.num}}'|">정보</button>
+										<button type="button" class="btn btn-sm btn-outline-secondary"
+											th:onclick="|location.href='deleted_ok?num=@{${homPage.num}}'|">삭제</button>
 
-
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
 										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card shadow-sm">
-							<!-- 		<svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-							<img class="bd-placeholder-img card-img-top" width="600%"
-								th:src="@{/img/kia.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card shadow-sm">
-						<!-- 	<svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-<img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/람보르기니.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
+											th:onclick="|location.href='updated?num=@{${homPage.num}}'|">수정</button>
 									</div>
 									<small class="text-muted">9 mins</small>
 								</div>
@@ -132,210 +53,24 @@
 						</div>
 					</div>
 
-					<div class="col">
-						 <div class="card shadow-sm">
-							<!--<svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-<img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/마세라티.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card shadow-sm">
-						<!-- 	<svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-<img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/벤츠.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card shadow-sm">
-						<!-- 	<svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-                <img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/쌍용.jpg}" />
-
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="col">
-						<div class="card shadow-sm">
-						<!-- 	<svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-<img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/페라리.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card shadow-sm">
-							<!-- <svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg> -->
-<img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/포르쉐.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card shadow-sm">
-							<!-- <svg class="bd-placeholder-img card-img-top" width="100%"
-								height="225" xmlns="http://www.w3.org/2000/svg" role="img"
-								aria-label="Placeholder: Thumbnail"
-								preserveAspectRatio="xMidYMid slice" focusable="false">
-                  <title>Placeholder</title>
-                  <rect width="100%" height="100%" fill="#55595c" />
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em">
-                    Thumbnail
-                  </text>
-                </svg>
- --> <img class="bd-placeholder-img card-img-top" width="100%"
-								th:src="@{/img/현대.jpg}" />
-							<div class="card-body">
-								<p class="card-text">This is a wider card with supporting
-									text below as a natural lead-in to additional content. This
-									content is a little bit longer.</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/article';">수정</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/deleted';">삭제</button>
-										<button type="button" class="btn btn-sm btn-outline-secondary"
-											onclick="javascript:location.href='/created';">추가</button>
-									</div>
-									<small class="text-muted">9 mins</small>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
+
+
 		</div>
 	</main>
 </div>
-
+<tr th:if="${#lists.size(dataCount)} > 0"
+					th:each="dataCount:${dataCount}">
+					<td colspan="5" id="footer"><a th:utext="${pageIndexList}"></a>
+					</td>
+				</tr>
+				<tr th:if="${#lists.size(dataCount)} < 0">
+					<td colspan="5">등록된 게시물이 없습니다</td>
+				</tr>
 <th:block layout:fragment="script">
 	<script th:inline="javascript">
-		/*
+
 		var errorMessage1 =[[${param.errorMessage}]];//get방식의 데이터를 가져올 수있다.
 		var errorMessage2 =[[${errorMessage}]];//post 방식의 데이터를 가져올수 있다.
 		if(errorMessage1 != null){
@@ -346,7 +81,7 @@
 			alert(errorMessage2);
 			
 		}
-		 */
+		 
 		function sendIt() {
 			var f = document.searchForm;
 			var str = f.searchValue.value;
